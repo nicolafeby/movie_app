@@ -28,16 +28,21 @@ class DetailMoviePage extends StatelessWidget {
   }
 
   Widget _buildBody() {
-    return const Padding(
-      padding: EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          DetailMovieImage(),
-          SizedBox(height: 16.0),
-          DetailMovieInformation(),
-        ],
-      ),
+    final data = arg.entities;
+    return ListView(
+      padding: const EdgeInsets.all(16.0),
+      children: [
+        DetailMovieImage(
+          image:
+              arg.entities.poster ?? 'https://dummyimage.com/600x400/000/fff',
+        ),
+        const SizedBox(height: 16.0),
+        DetailMovieInformation(
+          title: data.title ?? '',
+          desc: data.description ?? '',
+          releaseDate: data.createdDate ?? '' as DateTime,
+        ),
+      ],
     );
   }
 }
