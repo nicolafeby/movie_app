@@ -1,7 +1,7 @@
-import 'package:movie_app/domain/entities/movie_list_entities.dart';
+import 'package:movie_app/domain/movie_list/entities/movie_list_entities.dart';
 
 class DetailMovieArg {
-  final List<DataEntities> entities;
+  final DataEntities entities;
 
   const DetailMovieArg({required this.entities});
 }

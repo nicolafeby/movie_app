@@ -1,6 +1,6 @@
 import 'package:movie_app/core/models/requests/request_movie_list_model.dart';
 import 'package:movie_app/core/network/api_service.dart';
-import 'package:movie_app/domain/entities/movie_list_entities.dart';
+import 'package:movie_app/domain/movie_list/entities/movie_list_entities.dart';
 
 abstract class MovieListRemoteDataSource {
   Future<MovieListEntities> getMovieList(RequestMovieListModel params);

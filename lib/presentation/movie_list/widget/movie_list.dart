@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/core/argument/detail_movie_arg.dart';
 import 'package:movie_app/core/extension/extension.dart';
 import 'package:movie_app/core/router/router_constant.dart';
-import 'package:movie_app/domain/entities/movie_list_entities.dart';
+import 'package:movie_app/domain/movie_list/entities/movie_list_entities.dart';
 
 class MovieList extends StatelessWidget {
   final List<DataEntities> entities;
@@ -25,7 +25,7 @@ class MovieList extends StatelessWidget {
           onTap: () => Navigator.pushNamed(
             context,
             RouterConstant.detailMovie,
-            arguments: DetailMovieArg(entities: entities),
+            arguments: DetailMovieArg(entities: entities[index]),
           ),
           child: Container(
             color: Colors.transparent,

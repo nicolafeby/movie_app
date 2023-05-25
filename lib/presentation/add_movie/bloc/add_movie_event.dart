@@ -6,3 +6,5 @@ abstract class AddMovieEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class AddMovieStarted extends AddMovieEvent {}

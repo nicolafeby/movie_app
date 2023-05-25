@@ -2,8 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:movie_app/core/argument/request_movie_list_arg.dart';
 import 'package:movie_app/core/models/requests/request_movie_list_model.dart';
-import 'package:movie_app/domain/entities/movie_list_entities.dart';
-import 'package:movie_app/domain/usecases/movie_list_usecase.dart';
+import 'package:movie_app/domain/movie_list/entities/movie_list_entities.dart';
+import 'package:movie_app/domain/movie_list/usecases/movie_list_usecase.dart';
 import 'package:rxdart/rxdart.dart';
 
 part 'movie_list_event.dart';
