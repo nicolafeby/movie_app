@@ -16,15 +16,9 @@ class AddMoviePage extends StatefulWidget {
 }
 
 class _AddMoviePageState extends State<AddMoviePage> {
-  final TextEditingController _titleController = TextEditingController();
-  final TextEditingController _descController = TextEditingController();
   late AddMovieBloc _bloc;
-
-  @override
-  void initState() {
-    super.initState();
-    _bloc = BlocProvider.of(context);
-  }
+  final TextEditingController _descController = TextEditingController();
+  final TextEditingController _titleController = TextEditingController();
 
   @override
   void dispose() {
@@ -33,11 +27,9 @@ class _AddMoviePageState extends State<AddMoviePage> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _buildAppbar(),
-      body: _buildBody(),
-    );
+  void initState() {
+    super.initState();
+    _bloc = BlocProvider.of(context);
   }
 
   void _onTapAddPoster() async {
@@ -153,6 +145,52 @@ class _AddMoviePageState extends State<AddMoviePage> {
           ),
         );
       },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<AddMovieBloc, AddMovieState>(
+      listener: (context, state) {
+        if (state is AddMovieInProgress) {
+          showDialog(
+            barrierColor: Colors.black.withOpacity(0.7),
+            barrierDismissible: false,
+            context: context,
+            builder: (context) => const Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        } else if (state is AddMovieLoadInFailure) {
+          Navigator.pop(context);
+          final snackBar = SnackBar(
+            backgroundColor: Colors.red,
+            content: const Text('Oh no! Error when adding movie :()'),
+            action: SnackBarAction(
+              label: 'Ok',
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        } else if (state is AddMovieLoadInSuccess) {
+          Navigator.pop(context);
+          Navigator.pop(context);
+          final snackBar = SnackBar(
+            content: const Text('Yay! Success adding movie'),
+            action: SnackBarAction(
+              label: 'Ok',
+              onPressed: () {},
+            ),
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        }
+      },
+      child: Scaffold(
+        appBar: _buildAppbar(),
+        body: _buildBody(),
+      ),
     );
   }
 }

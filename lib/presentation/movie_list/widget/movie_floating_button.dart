@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 class MovieFloatingButton extends StatelessWidget {
-  final Function() onTap;
   const MovieFloatingButton({
     super.key,
     required this.onTap,
   });
+
+  final Function() onTap;
 
   @override
   Widget build(BuildContext context) {

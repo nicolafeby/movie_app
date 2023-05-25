@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 
 class CustomTextfield extends StatelessWidget {
-  final TextEditingController controller;
-  final Function(String) onChanged;
-  final int? maxLine;
-  final String? hintText;
-  final String? errorText;
   const CustomTextfield({
     super.key,
     required this.controller,
@@ -14,6 +9,20 @@ class CustomTextfield extends StatelessWidget {
     required this.onChanged,
     this.errorText,
   });
+
+  final TextEditingController controller;
+  final String? errorText;
+  final String? hintText;
+  final int? maxLine;
+  final Function(String) onChanged;
+
+  Widget _buildErrorText(BuildContext context) {
+    if (errorText == null) return const SizedBox();
+    return Text(
+      "* $errorText",
+      style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Colors.red),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,14 +42,6 @@ class CustomTextfield extends StatelessWidget {
         ),
         _buildErrorText(context)
       ],
-    );
-  }
-
-  Widget _buildErrorText(BuildContext context) {
-    if (errorText == null) return const SizedBox();
-    return Text(
-      "* $errorText",
-      style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Colors.red),
     );
   }
 }

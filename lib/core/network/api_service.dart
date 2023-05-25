@@ -21,6 +21,7 @@ class ApiService with DioMixin implements Dio {
       requestHeader: true,
       responseHeader: true,
     ));
+
   // ..add(InterceptorsWrapper(onRequest: (options, handler) async {
   //   options.headers.addAll(await userAgentClientHintsHeader());
   //   handler.next(options);

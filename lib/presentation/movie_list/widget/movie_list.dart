@@ -1,16 +1,68 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/core/argument/detail_movie_arg.dart';
 import 'package:movie_app/core/extension/extension.dart';
 import 'package:movie_app/core/router/router_constant.dart';
+import 'package:movie_app/core/widget/custom_network_image.dart';
 import 'package:movie_app/domain/movie_list/entities/movie_list_entities.dart';
 
 class MovieList extends StatelessWidget {
-  final List<DataEntities> entities;
   const MovieList({
     super.key,
     required this.entities,
   });
+
+  final List<DataEntities> entities;
+
+  Widget _buildImage(int index) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(12.0),
+      child: CustomNetworkImage(
+        imageUrl: entities[index].poster,
+        height: 100,
+        width: 100,
+      ),
+      // child: CachedNetworkImage(
+      //   fit: BoxFit.cover,
+      //   height: 100,
+      //   width: 100,
+      //   imageUrl:
+      //       entities[index].poster ?? 'https://dummyimage.com/600x400/000/fff',
+      // ),
+    );
+  }
+
+  Widget _buildTitle(BuildContext context, int index) {
+    return Text(
+      entities[index].title ?? '-',
+      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+            fontSize: 16.0,
+            fontWeight: FontWeight.w700,
+          ),
+    );
+  }
+
+  Widget _buildDesc(BuildContext context, int index) {
+    return Text(
+      "${entities[index].description}\n",
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
+      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+            fontSize: 14.0,
+            fontWeight: FontWeight.w400,
+          ),
+    );
+  }
+
+  Widget _buildReleaseDate(BuildContext context, int index) {
+    return Text(
+      entities[index].createdDate?.toFormattedDate() ?? '-',
+      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+            fontSize: 14.0,
+            color: Colors.grey,
+            fontWeight: FontWeight.w400,
+          ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,52 +102,6 @@ class MovieList extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-
-  Widget _buildImage(int index) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(12.0),
-      child: CachedNetworkImage(
-        fit: BoxFit.cover,
-        height: 100,
-        width: 100,
-        imageUrl:
-            entities[index].poster ?? 'https://dummyimage.com/600x400/000/fff',
-      ),
-    );
-  }
-
-  Widget _buildTitle(BuildContext context, int index) {
-    return Text(
-      entities[index].title ?? '-',
-      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-            fontSize: 16.0,
-            fontWeight: FontWeight.w700,
-          ),
-    );
-  }
-
-  Widget _buildDesc(BuildContext context, int index) {
-    return Text(
-      "${entities[index].description}\n",
-      maxLines: 2,
-      overflow: TextOverflow.ellipsis,
-      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-            fontSize: 14.0,
-            fontWeight: FontWeight.w400,
-          ),
-    );
-  }
-
-  Widget _buildReleaseDate(BuildContext context, int index) {
-    return Text(
-      entities[index].createdDate?.toFormattedDate() ?? '-',
-      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-            fontSize: 14.0,
-            color: Colors.grey,
-            fontWeight: FontWeight.w400,
-          ),
     );
   }
 }

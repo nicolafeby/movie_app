@@ -7,9 +7,10 @@ abstract class MovieListRemoteDataSource {
 }
 
 class MovieListRemoteDataSourceImpl implements MovieListRemoteDataSource {
+  MovieListRemoteDataSourceImpl({required this.apiService});
+
   final ApiService apiService;
 
-  MovieListRemoteDataSourceImpl({required this.apiService});
   @override
   Future<MovieListEntities> getMovieList(
     RequestMovieListModel params,

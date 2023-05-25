@@ -12,13 +12,16 @@ class MovieListInitial extends MovieListState {}
 class MovieListInProgress extends MovieListState {}
 
 class MovieListLoadInSuccess extends MovieListState {
-  final List<DataEntities> entities;
-  final bool hasReachedMax;
-
   const MovieListLoadInSuccess({
     required this.entities,
     required this.hasReachedMax,
   });
+
+  final List<DataEntities> entities;
+  final bool hasReachedMax;
+
+  @override
+  List<Object> get props => [entities, hasReachedMax];
 
   MovieListLoadInSuccess copyWith({
     List<DataEntities>? entities,
@@ -29,9 +32,6 @@ class MovieListLoadInSuccess extends MovieListState {
       hasReachedMax: hasReachedMax ?? this.hasReachedMax,
     );
   }
-
-  @override
-  List<Object> get props => [entities, hasReachedMax];
 }
 
 class MovieListLoadInFailure extends MovieListState {}

@@ -6,9 +6,9 @@ import 'package:movie_app/domain/add_movie/entities/add_movie_entities.dart';
 import 'package:movie_app/domain/add_movie/repositories/add_movie_repository.dart';
 
 class AddMovieRepositoryImpl implements AddMovieRepository {
-  final AddMovieRemoteDataSource remoteDataSource;
-
   AddMovieRepositoryImpl({required this.remoteDataSource});
+
+  final AddMovieRemoteDataSource remoteDataSource;
 
   @override
   Future<Either<Failures, AddMovieEntities>> postAddMovie(

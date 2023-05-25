@@ -4,9 +4,6 @@ part 'movie_list_model.g.dart';
 
 @JsonSerializable()
 class MovieListModel extends MovieListEntities {
-  @JsonKey(name: 'data')
-  final List<DataModel>? dataModel;
-
   MovieListModel({
     required String? status,
     required this.dataModel,
@@ -19,6 +16,9 @@ class MovieListModel extends MovieListEntities {
 
   factory MovieListModel.fromJson(Map<String, dynamic> json) =>
       _$MovieListModelFromJson(json);
+
+  @JsonKey(name: 'data')
+  final List<DataModel>? dataModel;
 
   Map<String, dynamic> toJson() => _$MovieListModelToJson(this);
 }

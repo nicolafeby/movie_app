@@ -15,12 +15,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   final List<Widget>? actions;
   final Color? backgroundColor;
+  final bool? centerTitle;
   final double? elevation;
   final Widget? flexibleSpace;
   final Widget? leading;
   final double? leadingWidth;
   final Widget title;
-  final bool? centerTitle;
 
   @override
   Size get preferredSize => const Size.fromHeight(56.0);

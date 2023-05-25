@@ -18,9 +18,9 @@ class AddMovieBloc extends Bloc<AddMovieEvent, AddMovieState> {
 
   final AddMovieUsecase usecase;
 
+  final _descController = BehaviorSubject<String>();
   final _movieImageController = BehaviorSubject<String>();
   final _titleController = BehaviorSubject<String>();
-  final _descController = BehaviorSubject<String>();
 
   changeMovieImage(String event) => _movieImageController.sink.add(event);
   changeTitle(String event) => _titleController.sink.add(event);
@@ -49,10 +49,17 @@ class AddMovieBloc extends Bloc<AddMovieEvent, AddMovieState> {
         },
       );
 
+  void dispose() {
+    _movieImageController.close();
+    _titleController.close();
+    _descController.close();
+  }
+
   _onAddMovieStarted(
     AddMovieStarted event,
     Emitter<AddMovieState> emit,
   ) async {
+    emit(AddMovieInProgress());
     final params = RequestAddMovieModel(
       description: desc,
       poster: image,
@@ -67,11 +74,5 @@ class AddMovieBloc extends Bloc<AddMovieEvent, AddMovieState> {
     );
 
     emit(updateState);
-  }
-
-  void dispose() {
-    _movieImageController.close();
-    _titleController.close();
-    _descController.close();
   }
 }

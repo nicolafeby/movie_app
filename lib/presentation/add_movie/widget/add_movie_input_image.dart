@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/presentation/add_movie/bloc/add_movie_bloc.dart';
 
 class AddMovieInputImage extends StatelessWidget {
-  final VoidCallback onTapAddImage;
-  final AddMovieBloc bloc;
   const AddMovieInputImage({
     super.key,
     required this.onTapAddImage,
     required this.bloc,
   });
+
+  final AddMovieBloc bloc;
+  final VoidCallback onTapAddImage;
 
   @override
   Widget build(BuildContext context) {

@@ -8,9 +8,9 @@ abstract class MovieListEvent extends Equatable {
 }
 
 class MovieListStarted extends MovieListEvent {
-  final RequestMovieListArg? arg;
-
   const MovieListStarted({this.arg});
+
+  final RequestMovieListArg? arg;
 
   @override
   List<Object?> get props => [arg];

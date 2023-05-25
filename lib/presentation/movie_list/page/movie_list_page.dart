@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/core/argument/request_movie_list_arg.dart';
 import 'package:movie_app/core/router/router_constant.dart';
 import 'package:movie_app/core/widget/custom_appbar.dart';
+import 'package:movie_app/core/widget/custom_error_state.dart';
 import 'package:movie_app/presentation/movie_list/bloc/movie_list_bloc.dart';
 import 'package:movie_app/presentation/movie_list/widget/movie_drawer.dart';
 import 'package:movie_app/presentation/movie_list/widget/movie_floating_button.dart';
@@ -18,18 +19,8 @@ class MovieListPage extends StatefulWidget {
 }
 
 class _MovieListPageState extends State<MovieListPage> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   late MovieListBloc _bloc;
-
-  bool _onNotificationHandle(ScrollEndNotification notification) {
-    if (notification.metrics.pixels >=
-        notification.metrics.maxScrollExtent - 350) {
-      _bloc.add(const MovieListStarted());
-      log('scroll');
-    }
-
-    return true;
-  }
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -43,18 +34,19 @@ class _MovieListPageState extends State<MovieListPage> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return NotificationListener<ScrollEndNotification>(
-      onNotification: (notification) => _onNotificationHandle(notification),
-      child: Scaffold(
-        key: _scaffoldKey,
-        drawer: const MovieDrawer(),
-        appBar: _buildAppbar(),
-        body: _buildBody(),
-        floatingActionButton: _buildFloatingButton(),
-      ),
-    );
+  _onRetry() {
+    _bloc.add(MovieListInitialStarted());
+    _bloc.add(const MovieListStarted());
+  }
+
+  bool _onNotificationHandle(ScrollEndNotification notification) {
+    if (notification.metrics.pixels >=
+        notification.metrics.maxScrollExtent - 350) {
+      _bloc.add(const MovieListStarted());
+      log('scroll');
+    }
+
+    return true;
   }
 
   PreferredSizeWidget _buildAppbar() {
@@ -85,9 +77,7 @@ class _MovieListPageState extends State<MovieListPage> {
             child: CircularProgressIndicator(),
           );
         } else if (state is MovieListLoadInFailure) {
-          return const Center(
-            child: Text('Error getting data'),
-          );
+          return CustomErrorState(onRetry: _onRetry);
         }
 
         (state as MovieListLoadInSuccess);
@@ -98,7 +88,23 @@ class _MovieListPageState extends State<MovieListPage> {
 
   Widget _buildFloatingButton() {
     return MovieFloatingButton(
-      onTap: () => Navigator.pushNamed(context, RouterConstant.addMovie),
+      onTap: () => Navigator.pushNamed(context, RouterConstant.addMovie).then(
+        (value) => context.read<MovieListBloc>().add(const MovieListStarted()),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return NotificationListener<ScrollEndNotification>(
+      onNotification: (notification) => _onNotificationHandle(notification),
+      child: Scaffold(
+        key: _scaffoldKey,
+        drawer: const MovieDrawer(),
+        appBar: _buildAppbar(),
+        body: _buildBody(),
+        floatingActionButton: _buildFloatingButton(),
+      ),
     );
   }
 }

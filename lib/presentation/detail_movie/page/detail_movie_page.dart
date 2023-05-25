@@ -5,16 +5,9 @@ import 'package:movie_app/presentation/detail_movie/widget/detail_movie_image.da
 import 'package:movie_app/presentation/detail_movie/widget/detail_movie_information.dart';
 
 class DetailMoviePage extends StatelessWidget {
-  final DetailMovieArg arg;
   const DetailMoviePage({super.key, required this.arg});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _buildAppbar(context),
-      body: _buildBody(),
-    );
-  }
+  final DetailMovieArg arg;
 
   PreferredSizeWidget _buildAppbar(BuildContext context) {
     return CustomAppBar(
@@ -43,6 +36,14 @@ class DetailMoviePage extends StatelessWidget {
           releaseDate: data.createdDate ?? '' as DateTime,
         ),
       ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: _buildAppbar(context),
+      body: _buildBody(),
     );
   }
 }

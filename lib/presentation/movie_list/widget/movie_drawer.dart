@@ -11,18 +11,6 @@ class MovieDrawer extends StatefulWidget {
 }
 
 class _MovieDrawerState extends State<MovieDrawer> {
-  @override
-  Widget build(BuildContext context) {
-    return Drawer(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildHeader(context),
-        ],
-      ),
-    );
-  }
-
   Widget _buildHeader(BuildContext context) {
     return DrawerHeader(
       decoration: const BoxDecoration(color: Color(0xFFBDBDBD)),
@@ -60,6 +48,18 @@ class _MovieDrawerState extends State<MovieDrawer> {
               ],
             ),
           )
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildHeader(context),
         ],
       ),
     );

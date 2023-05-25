@@ -8,8 +8,10 @@ import 'package:movie_app/domain/add_movie/repositories/add_movie_repository.dar
 
 class AddMovieUsecase
     implements Usecase<AddMovieEntities, RequestAddMovieModel> {
-  AddMovieRepository repository;
   AddMovieUsecase({required this.repository});
+
+  AddMovieRepository repository;
+
   @override
   Future<Either<Failures, AddMovieEntities>> call(
       RequestAddMovieModel params) async {

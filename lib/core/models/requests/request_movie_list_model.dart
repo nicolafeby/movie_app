@@ -3,9 +3,6 @@ part 'request_movie_list_model.g.dart';
 
 @JsonSerializable()
 class RequestMovieListModel {
-  final int? page;
-  final int? size;
-
   RequestMovieListModel({
     this.page,
     this.size,
@@ -13,6 +10,9 @@ class RequestMovieListModel {
 
   factory RequestMovieListModel.fromJson(Map<String, dynamic> json) =>
       _$RequestMovieListModelFromJson(json);
+
+  final int? page;
+  final int? size;
 
   Map<String, dynamic> toJson() => _$RequestMovieListModelToJson(this);
 }

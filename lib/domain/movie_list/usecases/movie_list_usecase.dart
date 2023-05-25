@@ -7,8 +7,10 @@ import 'package:movie_app/domain/movie_list/repositories/movie_list_repository.d
 
 class MovieListUsecase
     implements Usecase<MovieListEntities, RequestMovieListModel> {
-  MovieListRepository repository;
   MovieListUsecase({required this.repository});
+
+  MovieListRepository repository;
+
   @override
   Future<Either<Failures, MovieListEntities>> call(
       RequestMovieListModel params) async {

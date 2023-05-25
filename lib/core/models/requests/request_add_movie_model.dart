@@ -3,10 +3,6 @@ part 'request_add_movie_model.g.dart';
 
 @JsonSerializable()
 class RequestAddMovieModel {
-  final String? title;
-  final String? description;
-  final String? poster;
-
   RequestAddMovieModel({
     this.title,
     this.description,
@@ -15,6 +11,10 @@ class RequestAddMovieModel {
 
   factory RequestAddMovieModel.fromJson(Map<String, dynamic> json) =>
       _$RequestAddMovieModelFromJson(json);
+
+  final String? description;
+  final String? poster;
+  final String? title;
 
   Map<String, dynamic> toJson() => _$RequestAddMovieModelToJson(this);
 }

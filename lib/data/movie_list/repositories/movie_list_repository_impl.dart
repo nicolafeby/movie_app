@@ -6,9 +6,9 @@ import 'package:movie_app/domain/movie_list/entities/movie_list_entities.dart';
 import 'package:movie_app/domain/movie_list/repositories/movie_list_repository.dart';
 
 class MovieListRepositoryImpl implements MovieListRepository {
-  final MovieListRemoteDataSource remoteDataSource;
-
   MovieListRepositoryImpl({required this.remoteDataSource});
+
+  final MovieListRemoteDataSource remoteDataSource;
 
   @override
   Future<Either<Failures, MovieListEntities>> getMovieList(

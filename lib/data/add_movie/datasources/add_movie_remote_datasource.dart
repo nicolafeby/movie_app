@@ -7,9 +7,10 @@ abstract class AddMovieRemoteDataSource {
 }
 
 class AddMovieRemoteDataSourceImpl implements AddMovieRemoteDataSource {
+  AddMovieRemoteDataSourceImpl({required this.apiService});
+
   final ApiService apiService;
 
-  AddMovieRemoteDataSourceImpl({required this.apiService});
   @override
   Future<AddMovieEntities> postAddMovie(
     RequestAddMovieModel params,

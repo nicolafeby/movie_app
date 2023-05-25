@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/core/extension/extension.dart';
 
 class DetailMovieInformation extends StatelessWidget {
-  final String title;
-  final String desc;
-  final DateTime releaseDate;
   const DetailMovieInformation({
     super.key,
     required this.title,
@@ -12,18 +9,9 @@ class DetailMovieInformation extends StatelessWidget {
     required this.releaseDate,
   });
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        _buildTitle(context),
-        const SizedBox(height: 4.0),
-        _buildReleaseDate(context),
-        const SizedBox(height: 12.0),
-        _buildDescriotion(context),
-      ],
-    );
-  }
+  final String desc;
+  final DateTime releaseDate;
+  final String title;
 
   Widget _buildTitle(BuildContext context) {
     return Text(
@@ -53,6 +41,19 @@ class DetailMovieInformation extends StatelessWidget {
       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
             fontWeight: FontWeight.w600,
           ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        _buildTitle(context),
+        const SizedBox(height: 4.0),
+        _buildReleaseDate(context),
+        const SizedBox(height: 12.0),
+        _buildDescriotion(context),
+      ],
     );
   }
 }

@@ -1,26 +1,20 @@
 import 'package:json_annotation/json_annotation.dart';
 
 class MovieListEntities {
-  String? status;
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  List<DataEntities>? data;
-  String? info;
-
   MovieListEntities({
     this.status,
     this.data,
     this.info,
   });
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  List<DataEntities>? data;
+
+  String? info;
+  String? status;
 }
 
 class DataEntities {
-  int? id;
-  String? title;
-  String? description;
-  String? poster;
-  DateTime? createdDate;
-
   DataEntities({
     this.id,
     this.title,
@@ -28,4 +22,10 @@ class DataEntities {
     this.poster,
     this.createdDate,
   });
+
+  DateTime? createdDate;
+  String? description;
+  int? id;
+  String? poster;
+  String? title;
 }

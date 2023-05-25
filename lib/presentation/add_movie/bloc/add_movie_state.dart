@@ -10,9 +10,9 @@ abstract class AddMovieState extends Equatable {
 class AddMovieInProgress extends AddMovieState {}
 
 class AddMovieLoadInSuccess extends AddMovieState {
-  final AddMovieEntities entities;
-
   const AddMovieLoadInSuccess({required this.entities});
+
+  final AddMovieEntities entities;
 
   @override
   List<Object> get props => [entities];
