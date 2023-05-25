@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/core/utils/app_constants.dart';
 
 class MovieDrawer extends StatefulWidget {
   const MovieDrawer({
@@ -29,13 +30,13 @@ class _MovieDrawerState extends State<MovieDrawer> {
         alignment: Alignment.topLeft,
         clipBehavior: Clip.none,
         children: [
-          // Positioned(
-          //   top: -40,
-          //   child: Image.asset(
-          //     // AssetsConstant.imgNews,
-          //     height: 150,
-          //   ),
-          // ),
+          Positioned(
+            top: -40,
+            child: Image.asset(
+              AssetConstant.imgMovie,
+              height: 150,
+            ),
+          ),
           Positioned(
             bottom: 0,
             left: 0,

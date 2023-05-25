@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/core/argument/detail_movie_arg.dart';
 import 'package:movie_app/core/router/router_constant.dart';
+import 'package:movie_app/injector/injector.dart';
 import 'package:movie_app/presentation/add_movie/page/add_movie_page.dart';
 import 'package:movie_app/presentation/detail_movie/page/detail_movie_page.dart';
+import 'package:movie_app/presentation/movie_list/bloc/movie_list_bloc.dart';
 import 'package:movie_app/presentation/movie_list/page/movie_list_page.dart';
 
 class Router {
@@ -17,9 +21,12 @@ class Router {
       case RouterConstant.addMovie:
         return const AddMoviePage();
       case RouterConstant.detailMovie:
-        return const DetailMoviePage();
+        return DetailMoviePage(arg: settings.arguments as DetailMovieArg);
       default:
-        return const MovieListPage();
+        return BlocProvider(
+          create: (context) => sl<MovieListBloc>(),
+          child: const MovieListPage(),
+        );
     }
   }
 

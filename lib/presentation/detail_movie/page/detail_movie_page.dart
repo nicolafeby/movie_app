@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/core/argument/detail_movie_arg.dart';
 import 'package:movie_app/core/widget/custom_appbar.dart';
 import 'package:movie_app/presentation/detail_movie/widget/detail_movie_image.dart';
 import 'package:movie_app/presentation/detail_movie/widget/detail_movie_information.dart';
 
 class DetailMoviePage extends StatelessWidget {
-  const DetailMoviePage({super.key});
+  final DetailMovieArg arg;
+  const DetailMoviePage({super.key, required this.arg});
 
   @override
   Widget build(BuildContext context) {
