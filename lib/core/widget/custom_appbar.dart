@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
     required this.title,
-    this.iconThemeData,
     this.actions,
     this.backgroundColor = Colors.white,
     this.elevation = 2.0,
     this.flexibleSpace,
     this.leading,
     this.leadingWidth,
+    this.centerTitle = false,
     super.key,
   });
 
@@ -17,10 +17,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color? backgroundColor;
   final double? elevation;
   final Widget? flexibleSpace;
-  final IconThemeData? iconThemeData;
   final Widget? leading;
   final double? leadingWidth;
   final Widget title;
+  final bool? centerTitle;
 
   @override
   Size get preferredSize => const Size.fromHeight(56.0);
@@ -28,9 +28,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      centerTitle: centerTitle,
       leading: leading,
       leadingWidth: leadingWidth,
-      iconTheme: iconThemeData,
+      iconTheme: const IconThemeData(color: Colors.black),
       title: title,
       backgroundColor: backgroundColor,
       elevation: elevation,

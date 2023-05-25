@@ -33,13 +33,16 @@ class _MovieListPageState extends State<MovieListPage> {
 
   PreferredSizeWidget _buildAppbar() {
     return CustomAppBar(
+      centerTitle: true,
       leading: InkWell(
         onTap: () => _scaffoldKey.currentState?.openDrawer(),
         child: const Icon(Icons.menu, color: Colors.black),
       ),
       title: Text(
         'Movies',
-        style: Theme.of(context).textTheme.titleLarge,
+        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+              fontWeight: FontWeight.w700,
+            ),
       ),
     );
   }
