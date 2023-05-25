@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/core/router/router_constant.dart';
 import 'package:movie_app/presentation/add_movie/page/add_movie_page.dart';
+import 'package:movie_app/presentation/detail_movie/page/detail_movie_page.dart';
 import 'package:movie_app/presentation/movie_list/page/movie_list_page.dart';
 
 class Router {
@@ -15,6 +16,8 @@ class Router {
     switch (settings.name) {
       case RouterConstant.addMovie:
         return const AddMoviePage();
+      case RouterConstant.detailMovie:
+        return const DetailMoviePage();
       default:
         return const MovieListPage();
     }
